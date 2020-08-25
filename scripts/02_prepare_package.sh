@@ -47,7 +47,7 @@ cp -rf ../openwrt-lienol/package/kernel/r8125 ./package/kernel
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-arpbind package/lean/luci-app-arpbind
 # AutoCore
 svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/autocore package/lean/autocore
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/coremark package/lean/coremark
+svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/coremark package/lean/coremark
 mkdir package/lean/coremark/patches
 wget -P package/lean/coremark/patches/ https://raw.githubusercontent.com/zxcvbnmv/zxcvbnm-openwrt/master/PATCH/coremark.patch
 # Edge theme
