@@ -1,8 +1,8 @@
 #!/bin/bash
 clear
 # Make target
-sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=4.19/g' ./target/linux/x86/Makefile
-sed -i 's/KERNEL_TESTING_PATCHVER:=5.4/KERNEL_TESTING_PATCHVER:=4.19/g' ./target/linux/x86/Makefile
+#sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=4.19/g' ./target/linux/x86/Makefile
+#sed -i 's/KERNEL_TESTING_PATCHVER:=5.4/KERNEL_TESTING_PATCHVER:=4.19/g' ./target/linux/x86/Makefile
 # Enable O3
 sed -i 's/Os/O3/g' include/target.mk
 sed -i 's/O2/O3/g' ./rules.mk
@@ -29,14 +29,14 @@ pushd feeds/luci
 wget -O- https://github.com/LGA1150/fullconenat-fw3-patch/raw/master/luci.patch | git apply
 popd
 # Patch Kernel with fullcone
-wget -P target/linux/generic/hack-4.19/ https://github.com/coolsnowwolf/lede/raw/master/target/linux/generic/hack-4.19/952-net-conntrack-events-support-multiple-registrant.patch
+wget -P target/linux/generic/hack-5.4/ https://github.com/coolsnowwolf/lede/raw/master/target/linux/generic/hack-5.4/952-net-conntrack-events-support-multiple-registrant.patch
 # FullCone Module
 cp -rf ../openwrt-lienol/package/network/fullconenat ./package/network/fullconenat
 # Patch FireWall with SFE
 patch -p1 < ../PATCH/luci-app-firewall_add_sfe_switch.patch
 # Patch Kernel with SFE
-pushd target/linux/generic/hack-4.19
-wget https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/generic/hack-4.19/999-net-patch-linux-kernel-to-support-shortcut-fe.patch
+pushd target/linux/generic/hack-5.4
+wget https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/generic/hack-5.4/999-shortcut-fe-support.patch
 popd
 # SFE Module
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/shortcut-fe package/new/shortcut-fe
@@ -48,7 +48,8 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-arpbind 
 # AutoCore
 svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/autocore package/lean/autocore
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/coremark package/lean/coremark
-sed -i 's,-DMULTIT,-Ofast -DMULTIT,g' package/lean/coremark/Makefile
+mkdir package/lean/coremark/patches
+wget -P package/lean/coremark/patches/ https://raw.githubusercontent.com/zxcvbnmv/zxcvbnm-openwrt/master/PATCH/coremark.patch
 # Edge theme
 git clone -b master --single-branch https://github.com/garypang13/luci-theme-edge package/new/luci-theme-edge
 # UPnP
@@ -61,7 +62,8 @@ cp -rf ../PATCH/addition-trans-zh-master package/lean/lean-translate
 #wget https://downloads.openwrt.org/releases/${latest_version}/targets/x86/64/packages/Packages.gz
 #zgrep -m 1 "Depends: kernel (=.*)$" Packages.gz | sed -e 's/.*-\(.*\))/\1/' > .vermagic
 #sed -i -e 's/^\(.\).*vermagic$/\1cp $(TOPDIR)\/.vermagic $(LINUX_DIR)\/.vermagic/' include/kernel-defaults.mk
-
+# Grub time
+sed -i 's/default "5"/default "0"/g' config/Config-images.in
 # Limits
 sed -i 's/16384/65536/g' package/kernel/linux/files/sysctl-nf-conntrack.conf
 # Del default configuration
