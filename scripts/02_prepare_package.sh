@@ -1,9 +1,9 @@
 #!/bin/bash
 clear
 # Use 19.07-feed	
-#rm -f ./feeds.conf.default	
-#wget https://raw.githubusercontent.com/openwrt/openwrt/openwrt-19.07/feeds.conf.default	
-#wget -P include/ https://raw.githubusercontent.com/openwrt/openwrt/openwrt-19.07/include/scons.mk
+rm -f ./feeds.conf.default	
+wget https://raw.githubusercontent.com/openwrt/openwrt/openwrt-19.07/feeds.conf.default	
+wget -P include/ https://raw.githubusercontent.com/openwrt/openwrt/openwrt-19.07/include/scons.mk
 # Make target
 #sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=4.19/g' ./target/linux/x86/Makefile
 #sed -i 's/KERNEL_TESTING_PATCHVER:=5.4/KERNEL_TESTING_PATCHVER:=4.19/g' ./target/linux/x86/Makefile
