@@ -37,7 +37,7 @@ uci commit network
 #firewall
 uci set firewall.@zone[1].fullcone='1'
 uci commit firewall
-/etc/init.d/firewall restart
+
 
 #upnp
 uci set upnpd.config.igdv1='1'
@@ -46,14 +46,14 @@ uci del upnpd.config.enable_upnp
 uci del upnpd.config.enable_natpmp
 uci set upnpd.config.external_iface='wan'
 uci commit upnpd
-/etc/init.d/miniupnpd restart
+
 
 #dnsmasq
 uci del dhcp.@dnsmasq[0].rebind_protection='1'
 uci commit dhcp
 sed -i '/log-facility/d' /etc/dnsmasq.conf
 echo "log-facility=/dev/null" >> /etc/dnsmasq.conf
-/etc/init.d/dnsmasq restart
+
 
 #luci cache
 rm -rf /tmp/luci-modulecache/
