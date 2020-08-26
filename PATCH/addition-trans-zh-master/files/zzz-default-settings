@@ -1,13 +1,9 @@
 #!/bin/sh
 
-#uci set luci.main.mediaurlbase='/luci-static/argon'
-#uci commit luci
-
 #timezone
 uci set system.@system[0].timezone=CST-8
 uci set system.@system[0].zonename=Asia/Shanghai
 uci commit system
-
 
 #irq
 uci set irqbalance.irqbalance.enabled=1
@@ -29,15 +25,13 @@ uci commit uhttpd
 /etc/init.d/uhttpd restart
 
 #network
-uci set network.globals.packet_steering=1
-uci set network.lan.ipaddr='192.168.2.1'
+uci set network.lan.ipaddr='192.168.10.1'
 uci commit network
 /etc/init.d/network restart
 
 #firewall
 uci set firewall.@zone[1].fullcone='1'
 uci commit firewall
-
 
 #upnp
 uci set upnpd.config.igdv1='1'
@@ -47,13 +41,11 @@ uci del upnpd.config.enable_natpmp
 uci set upnpd.config.external_iface='wan'
 uci commit upnpd
 
-
 #dnsmasq
 uci del dhcp.@dnsmasq[0].rebind_protection='1'
 uci commit dhcp
 sed -i '/log-facility/d' /etc/dnsmasq.conf
 echo "log-facility=/dev/null" >> /etc/dnsmasq.conf
-
 
 #luci cache
 rm -rf /tmp/luci-modulecache/
