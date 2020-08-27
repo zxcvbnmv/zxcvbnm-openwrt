@@ -7,7 +7,7 @@ clear
 rm -f ./feeds.conf.default	
 wget https://raw.githubusercontent.com/openwrt/openwrt/openwrt-19.07/feeds.conf.default	
 wget -P include/ https://raw.githubusercontent.com/openwrt/openwrt/openwrt-19.07/include/scons.mk
-# del snapshot tag
+# Del snapshot tag
 sed -i 's,SNAPSHOT,,g' include/version.mk
 sed -i 's,snapshots,,g' package/base-files/image-config.in
 # Enable O3-compile
@@ -15,8 +15,6 @@ sed -i 's/Os/O3/g' include/target.mk
 sed -i 's/O2/O3/g' ./rules.mk
 # Update feed
 ./scripts/feeds update -a && ./scripts/feeds install -a
-# Enable irqbalance
-sed -i 's/0/1/g' feeds/packages/utils/irqbalance/files/irqbalance.config
 # patch jsonc
 patch -p1 < ../PATCH/use_json_object_new_int64.patch
 # patch dnsmasq
