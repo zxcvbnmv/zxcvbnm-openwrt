@@ -72,7 +72,7 @@ jobs:
         cd openwrt
         cp .config bin/targets/x86/64/
         cd bin/targets/x86/64/
-        rm -rf `ls | grep -v "squashfs"`
+        rm -rf `ls | grep -v "squashfs-combined"`
         gzip *.img
     - name: Upload Firmwares
       uses: actions/upload-artifact@master
