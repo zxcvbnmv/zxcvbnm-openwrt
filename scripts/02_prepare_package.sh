@@ -86,6 +86,16 @@ cp -rf ../PATCH/addition-trans-zh-master package/lean/lean-translate
 sed -i 's/default "5"/default "0"/g' config/Config-images.in
 # Limits
 sed -i 's/16384/65536/g' package/kernel/linux/files/sysctl-nf-conntrack.conf
+# Cpufreq
+echo '
+CONFIG_CPU_FREQ=y
+CONFIG_CPU_FREQ_DEFAULT_GOV_ONDEMAND=y
+CONFIG_CPU_FREQ_GOV_PERFORMANCE=y
+CONFIG_CPU_FREQ_GOV_POWERSAVE=y
+CONFIG_CPU_FREQ_GOV_ONDEMAND=y
+CONFIG_CPU_FREQ_GOV_SCHEDUTIL=y
+CONFIG_CPUFREQ_DT=y
+' >> ./target/linux/x86/64/config-5.4
 # Del default configuration
 rm -rf .config
 exit 0
