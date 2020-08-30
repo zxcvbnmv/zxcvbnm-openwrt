@@ -5,10 +5,14 @@ uci set system.@system[0].timezone=CST-8
 uci set system.@system[0].zonename=Asia/Shanghai
 uci commit system
 
+#Default theme
+uci set luci.main.mediaurlbase='/luci-static/bootstrap'	
+uci commit luci
+
 #irq
-uci set irqbalance.irqbalance.enabled=1
-uci commit irqbalance
-/etc/init.d/irqbalance restart
+#uci set irqbalance.irqbalance.enabled=1
+#uci commit irqbalance
+#/etc/init.d/irqbalance restart
 
 #feed
 sed -i '/openwrt_luci/ { s/snapshots\/packages/releases\/packages-19.07/g; }' /etc/opkg/distfeeds.conf	
@@ -33,9 +37,14 @@ uci commit network
 uci set firewall.@zone[1].fullcone='1'
 uci commit firewall
 
+#REDIRECT
+sed -i '/REDIRECT --to-ports 53/d' /etc/firewall.user
+echo "iptables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 53" >> /etc/firewall.user
+echo "iptables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 53" >> /etc/firewall.user
+
 #upnp
 uci set upnpd.config.igdv1='1'
-uci set upnpd.config.enabled='1'
+uci set upnpd.config.enabled='0'
 uci del upnpd.config.enable_upnp
 uci del upnpd.config.enable_natpmp
 uci set upnpd.config.external_iface='wan'
