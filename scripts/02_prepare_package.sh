@@ -59,21 +59,6 @@ git clone -b master --single-branch https://github.com/garypang13/luci-theme-edg
 # UPnP
 rm -rf ./feeds/packages/net/miniupnpd
 svn co https://github.com/coolsnowwolf/packages/trunk/net/miniupnpd feeds/packages/net/miniupnpd
-# Dependent packages
-svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/utils/fuse package/utils/fuse
-svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/network/services/samba36 package/network/services/samba36
-svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/libs/libconfig package/libs/libconfig
-rm -rf ./feeds/packages/utils/collectd
-svn co https://github.com/openwrt/packages/trunk/utils/collectd feeds/packages/utils/collectd
-# Replace GCC
-rm -rf ./feeds/packages/devel/gcc
-svn co https://github.com/openwrt/packages/trunk/devel/gcc feeds/packages/devel/gcc
-# Replace Golang
-rm -rf ./feeds/packages/lang/golang
-svn co https://github.com/openwrt/packages/trunk/lang/golang feeds/packages/lang/golang
-rm -rf ./feeds/packages/lang/golang/.svn
-rm -rf ./feeds/packages/lang/golang/golang
-svn co https://github.com/project-openwrt/packages/trunk/lang/golang/golang feeds/packages/lang/golang/golang
 # Translate
 cp -rf ../PATCH/addition-trans-zh-master package/lean/lean-translate
 # Vermagic
