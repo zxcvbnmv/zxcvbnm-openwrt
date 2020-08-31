@@ -14,6 +14,10 @@ uci commit luci
 #uci commit irqbalance
 #/etc/init.d/irqbalance restart
 
+#Disable BBR
+sed -i 's/net.ipv4.tcp_congestion_control=bbr/#net.ipv4.tcp_congestion_control=bbr/g' /etc/sysctl.d/12-tcp-bbr.conf
+sysctl -p
+
 #feed
 sed -i '/openwrt_luci/ { s/snapshots\/packages/releases\/packages-19.07/g; }' /etc/opkg/distfeeds.conf	
 sed -i '/openwrt_packages/ { s/snapshots\/packages/releases\/packages-19.07/g; }' /etc/opkg/distfeeds.conf	
