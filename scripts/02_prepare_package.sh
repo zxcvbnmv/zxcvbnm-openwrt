@@ -25,7 +25,6 @@ patch -p1 < ../PATCH/luci-add-filter-aaaa-option.patch
 cp -f ../PATCH/900-add-filter-aaaa-option.patch ./package/network/services/dnsmasq/patches/900-add-filter-aaaa-option.patch
 rm -rf ./package/base-files/files/etc/init.d/boot
 wget -P package/base-files/files/etc/init.d https://raw.githubusercontent.com/project-openwrt/openwrt/openwrt-18.06-k5.4/package/base-files/files/etc/init.d/boot
-wget -O- https://github.com/project-openwrt/openwrt/commit/abb0ba46c021595d49c35609b70e473e6c79d127.patch | patch -p1
 # Patch FireWall fullcone
 mkdir package/network/config/firewall/patches
 wget -P package/network/config/firewall/patches/ https://github.com/LGA1150/fullconenat-fw3-patch/raw/master/fullconenat.patch
