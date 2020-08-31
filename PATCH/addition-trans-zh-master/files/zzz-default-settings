@@ -29,6 +29,9 @@ sed -i 's,downloads.openwrt.org,mirrors.cloud.tencent.com/lede,g' /etc/opkg/dist
 #uhttpd
 uci set uhttpd.main.rfc1918_filter=0
 uci set uhttpd.main.redirect_https=0
+uci del uhttpd.main.listen_https
+uci del uhttpd.main.cert
+uci del uhttpd.main.key
 uci commit uhttpd
 /etc/init.d/uhttpd restart
 
