@@ -66,6 +66,11 @@ cp -rf ../PATCH/addition-trans-zh-master package/lean/lean-translate
 #wget https://downloads.openwrt.org/releases/${latest_version}/targets/x86/64/packages/Packages.gz
 #zgrep -m 1 "Depends: kernel (=.*)$" Packages.gz | sed -e 's/.*-\(.*\))/\1/' > .vermagic
 #sed -i -e 's/^\(.\).*vermagic$/\1cp $(TOPDIR)\/.vermagic $(LINUX_DIR)\/.vermagic/' include/kernel-defaults.mk
+# config-5.4
+echo '
+CONFIG_CRYPTO_AES=y
+CONFIG_CRYPTO_AES_X86_64=y
+' >> ./target/linux/x86/64/config-5.4
 # Grub time
 sed -i 's/default "5"/default "0"/g' config/Config-images.in
 # Limits
