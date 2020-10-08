@@ -40,7 +40,7 @@ cp -rf ../openwrt-lienol/package/network/fullconenat ./package/network/fullconen
 patch -p1 < ../PATCH/luci-app-firewall_add_sfe_switch.patch
 # Patch Kernel with SFE
 pushd target/linux/generic/hack-5.4
-wget https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/generic/hack-5.4/999-shortcut-fe-support.patch
+wget https://raw.githubusercontent.com/Lienol/openwrt/dev-master/target/linux/generic/hack-5.4/999-01-shortcut-fe-support.patch
 popd
 # SFE Module
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/shortcut-fe package/new/shortcut-fe
@@ -66,11 +66,18 @@ cp -rf ../PATCH/addition-trans-zh-master package/lean/lean-translate
 #wget https://downloads.openwrt.org/releases/${latest_version}/targets/x86/64/packages/Packages.gz
 #zgrep -m 1 "Depends: kernel (=.*)$" Packages.gz | sed -e 's/.*-\(.*\))/\1/' > .vermagic
 #sed -i -e 's/^\(.\).*vermagic$/\1cp $(TOPDIR)\/.vermagic $(LINUX_DIR)\/.vermagic/' include/kernel-defaults.mk
-# config-5.4
-echo '
-CONFIG_CRYPTO_AES=y
-CONFIG_CRYPTO_AES_X86_64=y
-' >> ./target/linux/x86/64/config-5.4
+# Replace cryptodev-linux
+rm -rf ./package/kernel/cryptodev-linux
+svn co https://github.com/project-openwrt/openwrt/trunk/package/kernel/cryptodev-linux package/kernel/cryptodev-linux
+# Replace Gcc version
+rm -rf ./feeds/packages/devel/gcc
+svn co https://github.com/openwrt/packages/trunk/devel/gcc feeds/packages/devel/gcc
+# Replace Golang version
+rm -rf ./feeds/packages/lang/golang
+svn co https://github.com/openwrt/packages/trunk/lang/golang feeds/packages/lang/golang
+rm -rf ./feeds/packages/lang/golang/.svn
+rm -rf ./feeds/packages/lang/golang/golang
+svn co https://github.com/project-openwrt/packages/trunk/lang/golang/golang feeds/packages/lang/golang/golang
 # Grub time
 sed -i 's/default "5"/default "0"/g' config/Config-images.in
 # Limits
