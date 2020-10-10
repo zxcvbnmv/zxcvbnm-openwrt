@@ -40,7 +40,7 @@ cp -rf ../openwrt-lienol/package/network/fullconenat ./package/network/fullconen
 patch -p1 < ../PATCH/luci-app-firewall_add_sfe_switch.patch
 # Patch Kernel with SFE
 pushd target/linux/generic/hack-5.4
-wget https://raw.githubusercontent.com/Lienol/openwrt/dev-master/target/linux/generic/hack-5.4/999-01-shortcut-fe-support.patch
+wget https://raw.githubusercontent.com/Lienol/openwrt/main/target/linux/generic/hack-5.4/999-01-shortcut-fe-support.patch
 popd
 # SFE Module
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/shortcut-fe package/new/shortcut-fe
