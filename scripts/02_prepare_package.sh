@@ -72,12 +72,6 @@ svn co https://github.com/project-openwrt/openwrt/trunk/package/kernel/cryptodev
 # Replace Gcc version
 rm -rf ./feeds/packages/devel/gcc
 svn co https://github.com/openwrt/packages/trunk/devel/gcc feeds/packages/devel/gcc
-# Replace Golang version
-rm -rf ./feeds/packages/lang/golang
-svn co https://github.com/openwrt/packages/trunk/lang/golang feeds/packages/lang/golang
-rm -rf ./feeds/packages/lang/golang/.svn
-rm -rf ./feeds/packages/lang/golang/golang
-svn co https://github.com/project-openwrt/packages/trunk/lang/golang/golang feeds/packages/lang/golang/golang
 # Grub time
 sed -i 's/default "5"/default "0"/g' config/Config-images.in
 # Limits
