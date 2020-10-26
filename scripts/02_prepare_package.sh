@@ -46,7 +46,7 @@ popd
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/shortcut-fe package/new/shortcut-fe
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/fast-classifier package/new/fast-classifier
 # Add 2.5G Ethernet LINUX driver
-cp -rf ../openwrt-lienol/package/kernel/r8125 ./package/kernel
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8125 ./package/kernel
 # Arpbind
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-arpbind package/lean/luci-app-arpbind
 # AutoCore
