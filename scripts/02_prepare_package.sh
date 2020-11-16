@@ -52,8 +52,6 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-arpbind 
 # AutoCore
 svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/autocore package/lean/autocore
 svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/coremark package/lean/coremark
-mkdir package/lean/coremark/patches
-wget -P package/lean/coremark/patches/ https://raw.githubusercontent.com/zxcvbnmv/zxcvbnm-openwrt/master/PATCH/coremark.patch
 # Edge theme
 git clone -b master --single-branch https://github.com/garypang13/luci-theme-edge package/new/luci-theme-edge
 # UPnP
