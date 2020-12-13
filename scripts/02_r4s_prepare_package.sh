@@ -50,7 +50,7 @@ pushd target/linux/generic/hack-5.4
 wget https://github.com/coolsnowwolf/lede/raw/master/target/linux/generic/hack-5.4/953-net-patch-linux-kernel-to-support-shortcut-fe.patch
 popd
 # Patch FireWall switch with SFE
-patch -p1 < ../PATCH/new/package/luci-app-firewall_add_sfe_switch.patch
+patch -p1 < ../PATCH/luci-app-firewall_add_sfe_switch.patch
 # SFE Module
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/shortcut-fe package/lean/shortcut-fe
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/fast-classifier package/lean/fast-classifier
