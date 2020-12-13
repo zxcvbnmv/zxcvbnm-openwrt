@@ -71,8 +71,7 @@ jobs:
       run: |
         cd openwrt
         cp .config bin/targets/rockchip/armv8
-        cd bin/targets/rockchip/armv8
-        rm -rf `ls | grep -v "squashfs-sysupgrade"`
+        cd bin/targets/rockchip/armv8        
         gzip *.img.gz
     - name: Upload Firmwares
       uses: actions/upload-artifact@master
