@@ -36,7 +36,7 @@ uci commit uhttpd
 /etc/init.d/uhttpd restart
 
 #network
-uci set network.lan.ipaddr='192.168.10.1'
+uci set network.lan.ipaddr='192.168.2.1'
 uci commit network
 /etc/init.d/network restart
 
