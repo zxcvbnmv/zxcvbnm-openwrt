@@ -6,7 +6,7 @@ on:
     paths:
       - '.github/workflows/r4s.yml'
 #  schedule:
- #   - cron: '00 00 * * *'
+ #   - cron: '00 01 * * *'
 
 jobs:
   build:
@@ -25,16 +25,31 @@ jobs:
         sudo -E apt-get install -y build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler libreadline-dev ccache curl wget vim nano g++-multilib python python3 python-pip python3-pip python-ply python3-ply haveged lrzsz scons
         sudo -E apt-get autoremove -y --purge
         sudo -E apt-get clean -y
-    - name: Prepare Openwrt 
+    - name: Prepare Openwrt
       run: |
         sudo chown -R runner:runner /home/runner/work/zxcvbnm-openwrt
         cp -r ./scripts/. ./
         /bin/bash 01_r4s_prepare_openwrt.sh
+    - name: Prepare Package
+      run: |
+        cd openwrt
+        cp -r ../scripts/. ./
+        /bin/bash 02_r4s_prepare_package.sh
+    - name: Convert Translation
+      run: |
+        cd openwrt
+        /bin/bash 03_convert_translation.sh
+    - name: Remove Upx
+      run: |
+        cd openwrt
+        /bin/bash 04_remove_upx.sh
+    - name: Add ACL
+      run: |
+        cd openwrt
+        /bin/bash 05_create_acl_for_luci.sh -a
     - name: Make Config
       run: |
         cd openwrt
-        ./scripts/feeds update -a && ./scripts/feeds install -a
-        rm -rf .config
         mv ../seed/r4s.config .config
         make defconfig
         chmod -R 755 ./
@@ -56,8 +71,6 @@ jobs:
       run: |
         cd openwrt
         cp .config bin/targets/rockchip/armv8
-        cd bin/targets/rockchip/armv8        
-        gzip *.img.gz
     - name: Upload Firmwares
       uses: actions/upload-artifact@master
       with:
