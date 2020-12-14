@@ -30,26 +30,11 @@ jobs:
         sudo chown -R runner:runner /home/runner/work/zxcvbnm-openwrt
         cp -r ./scripts/. ./
         /bin/bash 01_r4s_prepare_openwrt.sh
-    - name: Prepare Package
-      run: |
-        cd openwrt
-        cp -r ../scripts/. ./
-        /bin/bash 02_r4s_prepare_package.sh
-    - name: Convert Translation
-      run: |
-        cd openwrt
-        /bin/bash 03_convert_translation.sh
-    - name: Remove Upx
-      run: |
-        cd openwrt
-        /bin/bash 04_remove_upx.sh
-    - name: Add ACL
-      run: |
-        cd openwrt
-        /bin/bash 05_create_acl_for_luci.sh -a
     - name: Make Config
       run: |
         cd openwrt
+        ./scripts/feeds update -a && ./scripts/feeds install -a
+        rm -rf .config
         mv ../seed/r4s.config .config
         make defconfig
         chmod -R 755 ./
