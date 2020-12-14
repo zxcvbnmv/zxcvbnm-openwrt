@@ -1,3 +1,3 @@
 #!/bin/bash
-git clone -b 18.06-k5.4-nanopi-r4s --single-branch https://github.com/1715173329/openwrt
+git clone -b 1806-k54-nanopi-r4s --single-branch https://github.com/1715173329/openwrt
 exit 0
