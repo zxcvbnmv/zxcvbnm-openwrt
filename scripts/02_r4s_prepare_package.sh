@@ -55,7 +55,11 @@ git clone -b master --depth 1 https://github.com/garypang13/luci-theme-edge.git 
 rm -rf ./feeds/packages/net/miniupnpd
 svn co https://github.com/coolsnowwolf/packages/trunk/net/miniupnpd feeds/packages/net/miniupnpd
 # Translate
-cp -rf ../PATCH/addition-trans-zh-master package/lean/lean-translate
+#cp -rf ../PATCH/addition-trans-zh-master package/lean/lean-translate
+sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
+sed -i 's/option redirect_https.*/option redirect_https 0/' package/network/services/uhttpd/files/uhttpd.config
+sed -i 's/list listen_https/#list listen_https/g' package/network/services/uhttpd/files/uhttpd.config
+sed -i '$a\log-facility=/dev/null' package/network/services/dnsmasq/files/dnsmasq.conf
 # Limits
 sed -i 's/16384/65536/g' package/kernel/linux/files/sysctl-nf-conntrack.conf
 # Del default configuration
