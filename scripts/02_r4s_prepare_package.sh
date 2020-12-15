@@ -7,7 +7,7 @@ rm -rf ./package/boot/uboot-rockchip
 svn co https://github.com/1715173329/openwrt/branches/1806-k54-nanopi-r4s/package/boot/uboot-rockchip package/boot/uboot-rockchip
 rm ./target/linux/rockchip/patches-5.4/200-rockchip-add-support-for-NanoPi-R4S.patch
 wget -P target/linux/rockchip/patches-5.4 https://raw.githubusercontent.com/1715173329/openwrt/2814ff947700f9de31a896373b3f848f25ce7dd8/target/linux/rockchip/patches-5.4/200-rockchip-add-support-for-NanoPi-R4S.patch
-wget -P target/linux/rockchip/patches-5.4 https://raw.githubusercontent.com/QiuSimons/openwrt/1806-k54-nanopi-r4s/target/linux/rockchip/patches-5.4/201-rk3399-add-nanopi-r4s-device-specific-opp-dtsi.patch
+wget -O- https://github.com/zxcvbnmv/zxcvbnm-openwrt/raw/master/PATCH/rk3399cpufreq.patch | git apply
 # Use 19.07-feed
 rm -f ./feeds.conf.default
 wget https://github.com/openwrt/openwrt/raw/openwrt-19.07/feeds.conf.default
@@ -40,16 +40,6 @@ wget https://github.com/coolsnowwolf/lede/raw/master/target/linux/generic/hack-5
 popd
 # FullCone Module
 cp -rf ../openwrt-lienol/package/network/fullconenat ./package/network/fullconenat
-# Patch FireWall switch with SFE
-patch -p1 < ../PATCH/luci-app-firewall_add_sfe_switch.patch
-# Patch Kernel with SFE
-pushd target/linux/generic/hack-5.4
-wget https://github.com/coolsnowwolf/lede/raw/master/target/linux/generic/hack-5.4/953-net-patch-linux-kernel-to-support-shortcut-fe.patch
-popd
-# SFE Module
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/shortcut-fe package/lean/shortcut-fe
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/fast-classifier package/lean/fast-classifier
-wget -qO - https://github.com/AmadeusGhost/lede/commit/5e95fd8572d5727ccbfe199efbd5d98297d8643b.patch | patch -p1
 # Add R8168 driver
 svn co https://github.com/project-openwrt/openwrt/branches/master/package/ctcgfw/r8168 package/new/r8168
 # Arpbind
