@@ -21,7 +21,7 @@ define Package/addition-trans-zh
   CATEGORY:=LuCI
   TITLE:=LuCI support for Default Settings
   PKGARCH:=all
-  DEPENDS:=+luci-base +kmod-fast-classifier +kmod-tcp-bbr +kmod-ipt-nat6 +kmod-tun +libustream-openssl +luci-lib-ipkg +luci-compat +openssl-util +iptables-mod-fullconenat +iptables-mod-nat-extra +@LUCI_LANG_zh_Hans
+  DEPENDS:=+luci-base +kmod-ipt-nat6 +kmod-tun +libustream-openssl +luci-lib-ipkg +luci-compat +openssl-util +iptables-mod-fullconenat +iptables-mod-nat-extra +@LUCI_LANG_zh_Hans
 endef
 
 define Package/addition-trans-zh/description
