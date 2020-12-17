@@ -35,6 +35,10 @@ jobs:
         cd openwrt
         cp -r ../scripts/. ./
         /bin/bash 02_r4s_prepare_package.sh
+    - name: Convert Translation
+      run: |
+        cd openwrt
+        /bin/bash 03_convert_translation.sh
     - name: Remove Upx
       run: |
         cd openwrt
