@@ -7,8 +7,7 @@ rm -rf ./package/boot/uboot-rockchip
 svn co https://github.com/1715173329/openwrt/branches/1806-k54-nanopi-r4s/package/boot/uboot-rockchip package/boot/uboot-rockchip
 rm ./target/linux/rockchip/patches-5.4/200-rockchip-add-support-for-NanoPi-R4S.patch
 wget -P target/linux/rockchip/patches-5.4 https://raw.githubusercontent.com/1715173329/openwrt/2814ff947700f9de31a896373b3f848f25ce7dd8/target/linux/rockchip/patches-5.4/200-rockchip-add-support-for-NanoPi-R4S.patch
-wget https://github.com/zxcvbnmv/zxcvbnm-openwrt/raw/master/PATCH/rk3399cpufreq.patch
-git apply rk3399cpufreq.patch
+cp -f ../PATCH/201-rk3399cpufreq.patch ./target/linux/rockchip/patches-5.4
 # Use 19.07-feed
 rm -f ./feeds.conf.default
 wget https://github.com/openwrt/openwrt/raw/openwrt-19.07/feeds.conf.default
