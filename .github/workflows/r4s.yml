@@ -30,7 +30,7 @@ jobs:
         sudo chown -R runner:runner /home/runner/work/zxcvbnm-openwrt
         cp -r ./scripts/. ./
         /bin/bash 01_r4s_prepare_openwrt.sh
-    - name: Prepare Package 
+    - name: Prepare Package
       run: |
         cd openwrt
         cp -r ../scripts/. ./
