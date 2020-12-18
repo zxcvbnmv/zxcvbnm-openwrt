@@ -5,6 +5,15 @@ uci set system.@system[0].timezone=CST-8
 uci set system.@system[0].zonename=Asia/Shanghai
 uci commit system
 
+#system NTP
+uci delete system.ntp
+uci set system.ntp='timeserver'
+uci set system.ntp.enabled='1'
+uci set system.ntp.enable_server='0'
+uci add_list system.ntp.server='ntp1.aliyun.com'
+uci add_list system.ntp.server='time1.cloud.tencent.com'
+uci commit system.ntp
+
 #Default theme
 uci set luci.main.mediaurlbase='/luci-static/bootstrap'	
 uci commit luci
