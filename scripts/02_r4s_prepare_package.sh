@@ -50,7 +50,7 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-arpbind 
 svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/autocore package/lean/autocore
 svn co https://github.com/project-openwrt/packages/trunk/utils/coremark feeds/packages/utils/coremark
 ln -sf ../../../feeds/packages/utils/coremark ./package/feeds/packages/coremark
-sed -i 's,-DMULTIT,-Ofast -DMULTIT,g' feeds/packages/utils/coremark/Makefile
+sed -i 's,default n,default y,g' feeds/packages/utils/coremark/Makefile
 # Add Edge theme
 git clone -b master --depth 1 https://github.com/garypang13/luci-theme-edge.git package/new/luci-theme-edge
 # UPnP
