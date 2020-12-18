@@ -8,6 +8,8 @@ svn co https://github.com/1715173329/openwrt/branches/1806-k54-nanopi-r4s/packag
 rm ./target/linux/rockchip/patches-5.4/200-rockchip-add-support-for-NanoPi-R4S.patch
 wget -P target/linux/rockchip/patches-5.4 https://raw.githubusercontent.com/1715173329/openwrt/2814ff947700f9de31a896373b3f848f25ce7dd8/target/linux/rockchip/patches-5.4/200-rockchip-add-support-for-NanoPi-R4S.patch
 cp -f ../PATCH/201-rk3399cpufreq.patch ./target/linux/rockchip/patches-5.4
+mkdir -p ./target/linux/rockchip/armv8/base-files/etc/hotplug.d/iface
+cp -f ../PATCH/12-disable-rk3399-eth-offloading ./target/linux/rockchip/armv8/base-files/etc/hotplug.d/iface
 # Use 19.07-feed
 rm -f ./feeds.conf.default
 wget https://github.com/openwrt/openwrt/raw/openwrt-19.07/feeds.conf.default
@@ -48,7 +50,7 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-arpbind 
 svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/autocore package/lean/autocore
 svn co https://github.com/project-openwrt/packages/trunk/utils/coremark feeds/packages/utils/coremark
 ln -sf ../../../feeds/packages/utils/coremark ./package/feeds/packages/coremark
-sed -i 's,default n,default y,g' feeds/packages/utils/coremark/Makefile
+sed -i 's,-DMULTIT,-Ofast -DMULTIT,g' feeds/packages/utils/coremark/Makefile
 # Add Edge theme
 git clone -b master --depth 1 https://github.com/garypang13/luci-theme-edge.git package/new/luci-theme-edge
 # UPnP
