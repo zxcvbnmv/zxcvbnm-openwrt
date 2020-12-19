@@ -5,8 +5,7 @@ rm -rf ./target/linux/rockchip
 svn co https://github.com/1715173329/openwrt/branches/1806-k54-nanopi-r4s/target/linux/rockchip target/linux/rockchip
 rm -rf ./package/boot/uboot-rockchip
 svn co https://github.com/1715173329/openwrt/branches/1806-k54-nanopi-r4s/package/boot/uboot-rockchip package/boot/uboot-rockchip
-rm ./target/linux/rockchip/patches-5.4/200-rockchip-add-support-for-NanoPi-R4S.patch
-wget -P target/linux/rockchip/patches-5.4 https://raw.githubusercontent.com/1715173329/openwrt/2814ff947700f9de31a896373b3f848f25ce7dd8/target/linux/rockchip/patches-5.4/200-rockchip-add-support-for-NanoPi-R4S.patch
+rm ./target/linux/rockchip/patches-5.4/991-rockchip-rk3399-overclock-to-2.2-1.6-GHz-for-NanoPi4.patch
 cp -f ../PATCH/201-rk3399cpufreq.patch ./target/linux/rockchip/patches-5.4
 mkdir -p ./target/linux/rockchip/armv8/base-files/etc/hotplug.d/iface
 cp -f ../PATCH/12-disable-rk3399-eth-offloading ./target/linux/rockchip/armv8/base-files/etc/hotplug.d/iface
@@ -14,8 +13,8 @@ cp -f ../PATCH/12-disable-rk3399-eth-offloading ./target/linux/rockchip/armv8/ba
 rm -f ./feeds.conf.default
 wget https://github.com/openwrt/openwrt/raw/openwrt-19.07/feeds.conf.default
 # Del snapshot tag
-sed -i 's,SNAPSHOT,,g' include/version.mk
-sed -i 's,snapshots,,g' package/base-files/image-config.in
+#sed -i 's,SNAPSHOT,,g' include/version.mk
+#sed -i 's,snapshots,,g' package/base-files/image-config.in
 # Enable O3-compile
 sed -i 's/Os/O3/g' include/target.mk
 sed -i 's/O2/O3/g' ./rules.mk
