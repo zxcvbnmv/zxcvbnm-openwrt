@@ -5,8 +5,7 @@ rm -rf ./target/linux/rockchip
 svn co https://github.com/1715173329/openwrt/branches/1806-k54-nanopi-r4s/target/linux/rockchip target/linux/rockchip
 rm -rf ./package/boot/uboot-rockchip
 svn co https://github.com/1715173329/openwrt/branches/1806-k54-nanopi-r4s/package/boot/uboot-rockchip package/boot/uboot-rockchip
-rm ./target/linux/rockchip/patches-5.4/991-rockchip-rk3399-overclock-to-2.2-1.6-GHz-for-NanoPi4.patch
-cp -f ../PATCH/201-rk3399cpufreq.patch ./target/linux/rockchip/patches-5.4
+cp -f ../PATCH/991-rockchip-rk3399-overclock-to-2.2-1.6-GHz-for-NanoPi4.patch ./target/linux/rockchip/patches-5.4/
 mkdir -p ./target/linux/rockchip/armv8/base-files/etc/hotplug.d/iface
 cp -f ../PATCH/12-disable-rk3399-eth-offloading ./target/linux/rockchip/armv8/base-files/etc/hotplug.d/iface
 # Use 19.07-feed
