@@ -13,17 +13,6 @@ cp -f ../PATCH/12-disable-rk3399-eth-offloading ./target/linux/rockchip/armv8/ba
 # Use 19.07-feed
 rm -f ./feeds.conf.default
 wget https://github.com/openwrt/openwrt/raw/openwrt-19.07/feeds.conf.default
-# config-5.4
-echo '
-CONFIG_ARM64_CRYPTO=y
-CONFIG_CRYPTO_AES_ARM64=y
-CONFIG_CRYPTO_AES_ARM64_CE=y
-CONFIG_CRYPTO_AES_ARM64_CE_CCM=y
-CONFIG_CRYPTO_AES_ARM64_CE_BLK=y
-CONFIG_CRYPTO_AES_ARM64_BS=y
-CONFIG_CRYPTO_ANSI_CPRNG=y
-CONFIG_CRYPTO_USER_API_AEAD=y
-' >> ./target/linux/rockchip/armv8/config-5.4
 # Enable O3-compile
 sed -i 's/Os/O3/g' include/target.mk
 sed -i 's/O2/O3/g' ./rules.mk
