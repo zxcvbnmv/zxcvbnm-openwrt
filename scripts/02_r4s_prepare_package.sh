@@ -8,9 +8,6 @@ svn co https://github.com/1715173329/openwrt/branches/1806-k54-nanopi-r4s-uboot/
 rm ./target/linux/rockchip/patches-5.4/991-rockchip-rk3399-overclock-to-2.2-1.8-GHz-for-NanoPi4.patch
 cp -f ../PATCH/991-rk3399-overclock1.8-2.2GHz.patch ./target/linux/rockchip/patches-5.4/
 cp -f ../PATCH/249-rk3399dtsi.patch ./target/linux/rockchip/patches-5.4/
-# config-5.4
-sed -i 's/#\ CONFIG_CPU_FREQ_DEFAULT_GOV_PERFORMANCE\ is\ not\ set/CONFIG_CPU_FREQ_DEFAULT_GOV_PERFORMANCE=y/g' ./target/linux/rockchip/armv8/config-5.4
-sed -i 's/CONFIG_CPU_FREQ_DEFAULT_GOV_SCHEDUTIL=y/#\ CONFIG_CPU_FREQ_DEFAULT_GOV_SCHEDUTIL\ is\ not\ set/g' ./target/linux/rockchip/armv8/config-5.4
 # Use 19.07-feed
 rm -f ./feeds.conf.default
 wget https://github.com/openwrt/openwrt/raw/openwrt-19.07/feeds.conf.default
