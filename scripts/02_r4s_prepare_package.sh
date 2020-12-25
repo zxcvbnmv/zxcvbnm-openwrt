@@ -2,14 +2,15 @@
 clear
 # Make target for support NanoPi R4S
 rm -rf ./target/linux/rockchip
-svn co https://github.com/1715173329/openwrt/branches/1806-k54-nanopi-r4s/target/linux/rockchip target/linux/rockchip
+svn co https://github.com/1715173329/openwrt/branches/1806-k54-nanopi-r4s-uboot/target/linux/rockchip target/linux/rockchip
 rm -rf ./package/boot/uboot-rockchip
-svn co https://github.com/1715173329/openwrt/branches/1806-k54-nanopi-r4s/package/boot/uboot-rockchip package/boot/uboot-rockchip
+svn co https://github.com/1715173329/openwrt/branches/1806-k54-nanopi-r4s-uboot/package/boot/uboot-rockchip package/boot/uboot-rockchip
 rm ./target/linux/rockchip/patches-5.4/991-rockchip-rk3399-overclock-to-2.2-1.8-GHz-for-NanoPi4.patch
 cp -f ../PATCH/991-rk3399-overclock1.8-2.2GHz.patch ./target/linux/rockchip/patches-5.4/
 cp -f ../PATCH/249-rk3399dtsi.patch ./target/linux/rockchip/patches-5.4/
-mkdir -p ./target/linux/rockchip/armv8/base-files/etc/hotplug.d/iface
-cp -f ../PATCH/12-disable-rk3399-eth-offloading ./target/linux/rockchip/armv8/base-files/etc/hotplug.d/iface
+# config-5.4
+sed -i 's/#\ CONFIG_CPU_FREQ_DEFAULT_GOV_PERFORMANCE\ is\ not\ set/CONFIG_CPU_FREQ_DEFAULT_GOV_PERFORMANCE=y/g' ./target/linux/rockchip/armv8/config-5.4
+sed -i 's/CONFIG_CPU_FREQ_DEFAULT_GOV_SCHEDUTIL=y/#\ CONFIG_CPU_FREQ_DEFAULT_GOV_SCHEDUTIL\ is\ not\ set/g' ./target/linux/rockchip/armv8/config-5.4
 # Use 19.07-feed
 rm -f ./feeds.conf.default
 wget https://github.com/openwrt/openwrt/raw/openwrt-19.07/feeds.conf.default
@@ -39,6 +40,16 @@ wget https://github.com/coolsnowwolf/lede/raw/master/target/linux/generic/hack-5
 popd
 # FullCone Module
 cp -rf ../openwrt-lienol/package/network/fullconenat ./package/network/fullconenat
+# Patch FireWall with SFE-switch
+patch -p1 < ../PATCH/luci-app-firewall_add_sfe_switch.patch
+# Patch Kernel with SFE
+pushd target/linux/generic/hack-5.4
+wget https://github.com/coolsnowwolf/lede/raw/master/target/linux/generic/hack-5.4/953-net-patch-linux-kernel-to-support-shortcut-fe.patch
+popd
+# SFE Module
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/shortcut-fe package/lean/shortcut-fe
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/fast-classifier package/lean/fast-classifier
+wget -P package/base-files/files/etc/init.d https://github.com/QiuSimons/R2S-OpenWrt/raw/master/PATCH/duplicate/shortcut-fe
 # Add R8168 driver
 svn co https://github.com/project-openwrt/openwrt/branches/master/package/ctcgfw/r8168 package/new/r8168
 # Arpbind
