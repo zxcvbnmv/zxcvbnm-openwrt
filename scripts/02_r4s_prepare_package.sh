@@ -2,9 +2,9 @@
 clear
 # Make target for support NanoPi R4S
 rm -rf ./target/linux/rockchip
-svn co https://github.com/1715173329/openwrt/branches/1806-k54-nanopi-r4s-uboot/target/linux/rockchip target/linux/rockchip
+svn co https://github.com/project-openwrt/openwrt/branches/openwrt-18.06-k5.4/target/linux/rockchip target/linux/rockchip
 rm -rf ./package/boot/uboot-rockchip
-svn co https://github.com/1715173329/openwrt/branches/1806-k54-nanopi-r4s-uboot/package/boot/uboot-rockchip package/boot/uboot-rockchip
+svn co https://github.com/project-openwrt/openwrt/branches/openwrt-18.06-k5.4/package/boot/uboot-rockchip package/boot/uboot-rockchip
 rm ./target/linux/rockchip/patches-5.4/991-rockchip-rk3399-overclock-to-2.2-1.8-GHz-for-NanoPi4.patch
 cp -f ../PATCH/991-rk3399-overclock1.8-2.2GHz.patch ./target/linux/rockchip/patches-5.4/
 cp -f ../PATCH/249-rk3399dtsi.patch ./target/linux/rockchip/patches-5.4/
