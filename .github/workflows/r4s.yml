@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - name: Clone Repository
-      uses: actions/checkout@v1
+      uses: actions/checkout@v2
     - name: Init build dependencies
       env:
         DEBIAN_FRONTEND: noninteractive
@@ -25,7 +25,7 @@ jobs:
         sudo -E apt-get install -y build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler libreadline-dev ccache curl wget vim nano g++-multilib python python3 python-pip python3-pip python-ply python3-ply haveged lrzsz scons
         sudo -E apt-get autoremove -y --purge
         sudo -E apt-get clean -y
-    - name: Prepare Openwrt 
+    - name: Prepare Openwrt
       run: |
         sudo chown -R runner:runner /home/runner/work/zxcvbnm-openwrt
         cp -r ./scripts/. ./
@@ -72,7 +72,7 @@ jobs:
         cd openwrt
         cp .config bin/targets/rockchip/armv8
     - name: Upload Firmwares
-      uses: actions/upload-artifact@master
+      uses: actions/upload-artifact@v2
       with:
         name: Openwrt-19.07 for NanoPi-R4S-kernel-5.4.75
         path: openwrt/bin/targets/rockchip/armv8
