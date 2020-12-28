@@ -1,8 +1,10 @@
 #!/bin/sh
 
-#timezone
+#timezone & loglevel
 uci set system.@system[0].timezone=CST-8
 uci set system.@system[0].zonename=Asia/Shanghai
+uci set system.@system[0].conloglevel='1'
+uci set system.@system[0].cronloglevel='9'
 uci commit system
 
 #system NTP
@@ -28,10 +30,6 @@ sed -i 's/net.ipv4.tcp_congestion_control=bbr/#net.ipv4.tcp_congestion_control=b
 sysctl -p
 
 #feed
-sed -i '/openwrt_luci/ { s/snapshots\/packages/releases\/packages-19.07/g; }' /etc/opkg/distfeeds.conf	
-sed -i '/openwrt_packages/ { s/snapshots\/packages/releases\/packages-19.07/g; }' /etc/opkg/distfeeds.conf	
-sed -i '/openwrt_routing/ { s/snapshots\/packages/releases\/packages-19.07/g; }' /etc/opkg/distfeeds.conf	
-sed -i '/openwrt_telephony/ { s/snapshots\/packages/releases\/packages-19.07/g; }' /etc/opkg/distfeeds.conf
 sed -i '/natelol/d' /etc/opkg/distfeeds.conf
 sed -i 's,downloads.openwrt.org,mirrors.cloud.tencent.com/lede,g' /etc/opkg/distfeeds.conf
 
@@ -45,7 +43,8 @@ uci commit uhttpd
 /etc/init.d/uhttpd restart
 
 #network
-uci set network.lan.ipaddr='192.168.2.1'
+uci set network.lan.ipaddr='192.168.2.4'
+uci del network.globals.ula_prefix
 uci commit network
 /etc/init.d/network restart
 
@@ -68,6 +67,8 @@ uci commit upnpd
 
 #dnsmasq
 uci del dhcp.@dnsmasq[0].rebind_protection='1'
+uci set dhcp.@dnsmasq[0].quietdhcp='1'
+uci set dhcp.@dnsmasq[0].sequential_ip='1'
 uci commit dhcp
 sed -i '/log-facility/d' /etc/dnsmasq.conf
 echo "log-facility=/dev/null" >> /etc/dnsmasq.conf
