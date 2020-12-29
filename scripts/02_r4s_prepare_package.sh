@@ -57,7 +57,7 @@ svn co https://github.com/project-openwrt/packages/trunk/utils/coremark feeds/pa
 ln -sf ../../../feeds/packages/utils/coremark ./package/feeds/packages/coremark
 sed -i 's,default n,default y,g' feeds/packages/utils/coremark/Makefile
 # Add Edge theme
-git clone -b master --depth 1 https://github.com/garypang13/luci-theme-edge.git package/new/luci-theme-edge
+git clone -b master https://github.com/garypang13/luci-theme-edge.git package/new/luci-theme-edge
 # UPnP
 rm -rf ./feeds/packages/net/miniupnpd
 svn co https://github.com/coolsnowwolf/packages/trunk/net/miniupnpd feeds/packages/net/miniupnpd
