@@ -11,8 +11,9 @@ cp -f ../PATCH/249-rk3399dtsi.patch ./target/linux/rockchip/patches-5.4/
 # Use 19.07-feed
 rm -f ./feeds.conf.default
 wget https://github.com/openwrt/openwrt/raw/openwrt-19.07/feeds.conf.default
-# Enable O2-compile
-sed -i 's/Os/O2/g' include/target.mk
+# Enable O3-compile
+sed -i 's/Os/O3/g' include/target.mk
+sed -i 's/O2/O3/g' ./rules.mk
 # Update feed
 ./scripts/feeds update -a && ./scripts/feeds install -a
 # patch jsonc
@@ -55,8 +56,6 @@ svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/a
 svn co https://github.com/project-openwrt/packages/trunk/utils/coremark feeds/packages/utils/coremark
 ln -sf ../../../feeds/packages/utils/coremark ./package/feeds/packages/coremark
 sed -i 's,default n,default y,g' feeds/packages/utils/coremark/Makefile
-# Add Edge theme
-git clone -b master https://github.com/garypang13/luci-theme-edge.git package/new/luci-theme-edge
 # UPnP
 rm -rf ./feeds/packages/net/miniupnpd
 svn co https://github.com/coolsnowwolf/packages/trunk/net/miniupnpd feeds/packages/net/miniupnpd
