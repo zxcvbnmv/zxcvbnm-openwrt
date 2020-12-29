@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - name: Clone Repository
-      uses: actions/checkout@v1
+      uses: actions/checkout@v2
     - name: Init build dependencies
       env:
         DEBIAN_FRONTEND: noninteractive
@@ -72,7 +72,7 @@ jobs:
         cd openwrt
         cp .config bin/targets/rockchip/armv8
     - name: Upload Firmwares
-      uses: actions/upload-artifact@master
+      uses: actions/upload-artifact@v2
       with:
         name: Openwrt-19.07 for NanoPi-R4S-kernel-5.4.75
         path: openwrt/bin/targets/rockchip/armv8
