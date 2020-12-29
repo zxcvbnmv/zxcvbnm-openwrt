@@ -11,12 +11,8 @@ cp -f ../PATCH/249-rk3399dtsi.patch ./target/linux/rockchip/patches-5.4/
 # Use 19.07-feed
 rm -f ./feeds.conf.default
 wget https://github.com/openwrt/openwrt/raw/openwrt-19.07/feeds.conf.default
-# Del snapshot tag
-sed -i 's,SNAPSHOT,,g' include/version.mk
-sed -i 's,snapshots,,g' package/base-files/image-config.in
-# Enable O3-compile
-sed -i 's/Os/O3/g' include/target.mk
-sed -i 's/O2/O3/g' ./rules.mk
+# Enable O2-compile
+sed -i 's/Os/O2/g' include/target.mk
 # Update feed
 ./scripts/feeds update -a && ./scripts/feeds install -a
 # patch jsonc
