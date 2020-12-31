@@ -71,40 +71,40 @@ Subject: [PATCH] Create 991-rk3399-overclock1.8-2.2GHz.dtsi
 +			clock-latency-ns = <40000>;
 +		};
 +		opp01 {
-+			opp-hz = /bits/ 64 <600000000>;
-+			opp-microvolt = <800000>;
-+		};
-+		opp02 {
 +			opp-hz = /bits/ 64 <816000000>;
 +			opp-microvolt = <825000>;
 +		};
-+		opp03 {
++		opp02 {
 +			opp-hz = /bits/ 64 <1008000000>;
 +			opp-microvolt = <850000>;
 +		};
-+		opp04 {
++		opp03 {
 +			opp-hz = /bits/ 64 <1200000000>;
 +			opp-microvolt = <900000>;
 +		};
-+		opp05 {
++		opp04 {
 +			opp-hz = /bits/ 64 <1416000000>;
 +			opp-microvolt = <975000>;
 +		};
-+		opp06 {
++		opp05 {
 +			opp-hz = /bits/ 64 <1608000000>;
 +			opp-microvolt = <1050000>;
 +		};
-+		opp07 {
++		opp06 {
 +			opp-hz = /bits/ 64 <1800000000>;
 +			opp-microvolt = <1150000>;
 +		};
-+		opp08 {
++		opp07 {
 +			opp-hz = /bits/ 64 <2016000000>;
 +			opp-microvolt = <1250000>;
 +		};
-+		opp09 {
++		opp08 {
 +			opp-hz = /bits/ 64 <2208000000>;
 +			opp-microvolt = <1300000>;
++		};
++		opp09 {
++			opp-hz = /bits/ 64 <2400000000>;
++			opp-microvolt = <1350000>;
 +		};
 +	};
 +
