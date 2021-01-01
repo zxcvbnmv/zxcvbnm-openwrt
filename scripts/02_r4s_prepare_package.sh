@@ -48,7 +48,8 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/shortcut-fe packa
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/fast-classifier package/lean/fast-classifier
 wget -P package/base-files/files/etc/init.d https://github.com/QiuSimons/R2S-OpenWrt/raw/master/PATCH/duplicate/shortcut-fe
 # Add R8168 driver
-svn co https://github.com/project-openwrt/openwrt/branches/master/package/ctcgfw/r8168 package/new/r8168
+#svn co https://github.com/project-openwrt/openwrt/branches/master/package/ctcgfw/r8168 package/new/r8168
+sed -i 's,r8168,r8169,g' ./target/linux/rockchip/image/armv8.mk
 # Arpbind
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-arpbind package/lean/luci-app-arpbind
 # AutoCore
