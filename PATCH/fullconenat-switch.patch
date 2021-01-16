@@ -15,7 +15,7 @@ index 53612e0..bd51587 100644
  
  			return null;
  		};
-+		
++
 +		o = s.taboption('general', form.Flag, 'fullcone', _('Full Cone'));
 +		o.editable = true;
 +		o.depends('masq', '1');
