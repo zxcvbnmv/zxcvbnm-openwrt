@@ -1,12 +1,24 @@
+From 3ec0ac7ab1f7fd8348f16a0588cdc55bb8a1d64d Mon Sep 17 00:00:00 2001
+From: zxcvbnmv <40834572+zxcvbnmv@users.noreply.github.com>
+Date: Sun, 17 Jan 2021 03:15:52 +0800
+Subject: [PATCH] Update zones.js
+
+---
+ PATCH/zones.js | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/PATCH/zones.js b/PATCH/zones.js
+index 53612e0..bd51587 100644
 --- a/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js
 +++ b/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js
-@@ -167,6 +167,10 @@ return L.view.extend({
-			return null;
-		};
+@@ -166,6 +166,10 @@ return view.extend({
  
+ 			return null;
+ 		};
++		
 +		o = s.taboption('general', form.Flag, 'fullcone', _('Full Cone'));
 +		o.editable = true;
 +		o.depends('masq', '1');
-+
+ 
  		o = s.taboption('general', form.Flag, 'mtu_fix', _('MSS clamping'));
  		o.modalonly = true;
