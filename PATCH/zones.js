@@ -166,6 +166,10 @@ return view.extend({
 
 			return null;
 		};
+		
+		o = s.taboption('general', form.Flag, 'fullcone', _('Full Cone'));
+		o.editable = true;
+		o.depends('masq', '1');
 
 		o = s.taboption('general', form.Flag, 'mtu_fix', _('MSS clamping'));
 		o.modalonly = true;
