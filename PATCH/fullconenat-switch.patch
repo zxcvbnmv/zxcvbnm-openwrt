@@ -7,7 +7,7 @@ Subject: [PATCH] Update zones.js
  PATCH/zones.js | 4 ++++
  1 file changed, 4 insertions(+)
 
-diff --git a/PATCH/zones.js b/PATCH/zones.js
+diff --git a/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js b/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js
 index 53612e0..bd51587 100644
 --- a/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js
 +++ b/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js
