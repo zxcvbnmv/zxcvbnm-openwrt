@@ -1,0 +1,12 @@
+#!/bin/sh /etc/rc.common
+
+START=99
+
+start() {
+    # Reduce the number of WAN interrupt calls: rx-usecs 
+    ethtool -C eth0 rx-usecs 820
+    # CPU1 (2nd core) -> internal dev
+    echo 2 > /proc/irq/27/smp_affinity
+    # CPU2 (3nd core) -> pci-e dev
+    echo 4 > /proc/irq/234/smp_affinity
+}

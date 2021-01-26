@@ -20,18 +20,9 @@ uci commit system.ntp
 uci set luci.main.mediaurlbase='/luci-static/bootstrap'	
 uci commit luci
 
-#irq
-#uci set irqbalance.irqbalance.enabled=1
-#uci commit irqbalance
-#/etc/init.d/irqbalance restart
-
 #Disable BBR
 sed -i 's/net.ipv4.tcp_congestion_control=bbr/#net.ipv4.tcp_congestion_control=bbr/g' /etc/sysctl.d/12-tcp-bbr.conf
 sysctl -p
-
-#feed
-sed -i '/natelol/d' /etc/opkg/distfeeds.conf
-sed -i 's,downloads.openwrt.org,mirrors.cloud.tencent.com/lede,g' /etc/opkg/distfeeds.conf
 
 #uhttpd
 uci set uhttpd.main.rfc1918_filter=0
@@ -52,13 +43,7 @@ uci commit network
 uci set firewall.@zone[1].fullcone='1'
 uci commit firewall
 
-#REDIRECT
-#sed -i '/REDIRECT --to-ports 53/d' /etc/firewall.user
-#echo "iptables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 53" >> /etc/firewall.user
-#echo "iptables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 53" >> /etc/firewall.user
-
 #upnp
-uci set upnpd.config.igdv1='1'
 uci set upnpd.config.enabled='0'
 uci del upnpd.config.enable_upnp
 uci del upnpd.config.enable_natpmp
@@ -78,5 +63,4 @@ rm -rf /tmp/luci-modulecache/
 rm -f /tmp/luci-indexcache
 
 ln -sf /sbin/ip /usr/bin/ip
-sync; echo 3 > /proc/sys/vm/drop_caches
 exit 0

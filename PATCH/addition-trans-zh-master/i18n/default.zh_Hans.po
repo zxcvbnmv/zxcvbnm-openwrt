@@ -49,6 +49,9 @@ msgstr "划分给 ZRam 分区的内存大小（MB），推荐留空由系统自�
 msgid "Number of parallel threads used for compression"
 msgstr "用于压缩内存数据的CPU并发线程数"
 
+msgid "Buffer/Cache"
+msgstr "缓冲/缓存"
+
 msgid "Swap"
 msgstr "虚拟内存"
 

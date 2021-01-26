@@ -1,24 +1,12 @@
-From 3ec0ac7ab1f7fd8348f16a0588cdc55bb8a1d64d Mon Sep 17 00:00:00 2001
-From: zxcvbnmv <40834572+zxcvbnmv@users.noreply.github.com>
-Date: Sun, 17 Jan 2021 03:15:52 +0800
-Subject: [PATCH] Update zones.js
+diff --git a/feeds/luci/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js b/feeds/luci/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js
+--- a/feeds/luci/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js
++++ b/feeds/luci/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js
+@@ -57,6 +57,8 @@ return view.extend({
 
----
- PATCH/zones.js | 4 ++++
- 1 file changed, 4 insertions(+)
+ 		o = s.option(form.Flag, 'drop_invalid', _('Drop invalid packets'));
 
-diff --git a/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js b/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js
-index 53612e0..bd51587 100644
---- a/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js
-+++ b/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js
-@@ -166,6 +166,10 @@ return view.extend({
- 
- 			return null;
- 		};
++		o = s.option(form.Flag, 'fullcone', _('Enable FullCone NAT'));
 +
-+		o = s.taboption('general', form.Flag, 'fullcone', _('Full Cone'));
-+		o.editable = true;
-+		o.depends('masq', '1');
- 
- 		o = s.taboption('general', form.Flag, 'mtu_fix', _('MSS clamping'));
- 		o.modalonly = true;
+ 		var p = [
+ 			s.option(form.ListValue, 'input', _('Input')),
+ 			s.option(form.ListValue, 'output', _('Output')),

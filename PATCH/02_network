@@ -1,0 +1,44 @@
+#!/bin/sh
+#
+# Copyright © 2017 OpenWrt.org
+#
+. /lib/functions/uci-defaults.sh
+. /lib/functions/system.sh
+
+rockchip_setup_interfaces()
+{
+	local board="$1"
+
+	case "$board" in
+	friendlyarm,nanopi-r4s)
+		ucidef_set_interfaces_lan_wan 'eth1' 'eth0'
+		;;
+	*)
+		ucidef_set_interface_lan 'eth0'
+		;;
+	esac
+}
+
+rockchip_setup_macs()
+{
+	local board="$1"
+	local lan_mac=""
+	local label_mac=""
+
+	case "$board" in
+	friendlyarm,nanopi-r4s)
+		lan_mac=$(macaddr_random)
+		;;
+	esac
+
+	[ -n "$lan_mac" ] && ucidef_set_interface_macaddr "lan" $lan_mac
+	[ -n "$label_mac" ] && ucidef_set_label_macaddr $label_mac
+}
+
+board_config_update
+board=$(board_name)
+rockchip_setup_interfaces $board
+rockchip_setup_macs $board
+board_config_flush
+
+exit 0
