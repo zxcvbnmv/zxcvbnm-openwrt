@@ -35,7 +35,7 @@ wget -P package/network/config/firewall/patches/ https://github.com/project-open
 # Patch LuCI fullcone-switch
 patch -p1 < ../PATCH/fullconenat-switch.patch
 # FullCone Module
-svn co https://github.com/Lienol/openwrt/trunk/package/network/fullconenat ./package/network/fullconenat
+cp -rf ../PATCH/fullconenat ./package/network/fullconenat
 # Patch FireWall with SFE-switch
 patch -p1 < ../PATCH/luci-app-firewall_add_sfe_switch.patch
 # Patch Kernel with SFE
