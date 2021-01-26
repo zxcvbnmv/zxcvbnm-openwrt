@@ -74,5 +74,5 @@ jobs:
     - name: Upload Firmwares
       uses: actions/upload-artifact@v2
       with:
-        name: Openwrt-19.07 for NanoPi-R4S-kernel-5.4.75
+        name: Openwrt SNAPSHOT NanoPi-R4S-kernel-5.4.92
         path: openwrt/bin/targets/rockchip/armv8
