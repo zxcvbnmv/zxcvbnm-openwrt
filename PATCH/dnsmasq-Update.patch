@@ -1,0 +1,29 @@
+From 6f54d237da1e88ad42432343d574c8fa690b2f8a Mon Sep 17 00:00:00 2001
+From: zxcvbnmv <40834572+zxcvbnmv@users.noreply.github.com>
+Date: Tue, 26 Jan 2021 23:36:46 +0800
+Subject: [PATCH] Update dnsmasqmakefile
+
+---
+ PATCH/dnsmasqmakefile | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/package/network/services/dnsmasq/Makefile b/package/network/services/dnsmasq/Makefile
+index 7b5af1d..ba0019c 100644
+--- a/package/network/services/dnsmasq/Makefile
++++ b/package/network/services/dnsmasq/Makefile
+@@ -8,13 +8,13 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=dnsmasq
+-PKG_UPSTREAM_VERSION:=2.83
++PKG_UPSTREAM_VERSION:=2.84
+ PKG_VERSION:=$(subst test,~~test,$(subst rc,~rc,$(PKG_UPSTREAM_VERSION)))
+ PKG_RELEASE:=1
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_UPSTREAM_VERSION).tar.xz
+ PKG_SOURCE_URL:=http://thekelleys.org.uk/dnsmasq
+-PKG_HASH:=ffc1f7e8b05e22d910b9a71d09f1128197292766dc7c54cb7018a1b2c3af4aea
++PKG_HASH:=603195C64B73137609B07E1024AE0B37F652B2F5FE467DCE66985B3D1850050C
+ 
+ PKG_LICENSE:=GPL-2.0
+ PKG_LICENSE_FILES:=COPYING
