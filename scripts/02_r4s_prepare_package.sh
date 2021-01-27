@@ -20,7 +20,6 @@ sed -i 's/O2/O3/g' ./rules.mk
 # patch jsonc
 patch -p1 < ../PATCH/use_json_object_new_int64.patch
 # patch dnsmasq
-patch -p1 < ../PATCH/dnsmasq-Update.patch
 patch -p1 < ../PATCH/dnsmasq-add-filter-aaaa-option.patch
 patch -p1 < ../PATCH/luci-add-filter-aaaa-option.patch
 cp -f ../PATCH/900-add-filter-aaaa-option.patch ./package/network/services/dnsmasq/patches/900-add-filter-aaaa-option.patch
